@@ -5,6 +5,7 @@ const path = require('path');
 const root = __dirname;
 const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript', '.md': 'text/plain' };
 const port = process.env.PORT || 8087;
+const host = process.env.HOST || '0.0.0.0';
 
 const server = http.createServer((req, res) => {
   let requestPath = req.url === '/' ? 'index.html' : decodeURIComponent(req.url.slice(1));
@@ -24,6 +25,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(port, '127.0.0.1', () => {
-  console.log(`EdgeForm running at http://127.0.0.1:${port}`);
+server.listen(port, host, () => {
+  console.log(`EdgeForm running locally at http://127.0.0.1:${port}`);
+  console.log(`EdgeForm listening on ${host}:${port} for same-network devices`);
 });

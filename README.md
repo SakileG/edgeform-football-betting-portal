@@ -21,7 +21,9 @@ node --check script.js
 node server.js
 ```
 
-Then open: http://127.0.0.1:8087
+Then open on this computer: http://127.0.0.1:8087
+
+If you want to open it from another device on the same Wi-Fi, use your computer's network IP with the same port, for example `http://192.168.8.129:8087`. Windows Firewall may ask you to allow Node.js on private networks.
 
 ## Deploy to Vercel
 
