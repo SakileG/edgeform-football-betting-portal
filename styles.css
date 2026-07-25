@@ -115,6 +115,12 @@ main, .hero nav, .hero-grid, footer {
 }
 
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.sample-status {
+  min-height: 22px;
+  margin: 14px 0 0;
+  color: var(--green);
+  font-weight: 760;
+}
 
 .hero-card, .summary-card, .match-card, .slip-card, .strategy-card, .journal, .control-panel, .data-notice {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.032));

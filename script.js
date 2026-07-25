@@ -1,7 +1,17 @@
 const { DEFAULT_MATCHES, STRATEGIES, evaluateMatch, createMultiBets, unitStake } = window.BettingEngine;
 
+function safeJSON(key, fallback) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || 'null');
+    return value ?? fallback;
+  } catch (_) {
+    localStorage.removeItem(key);
+    return fallback;
+  }
+}
+
 function hydrateMatches() {
-  const stored = JSON.parse(localStorage.getItem('edgeform.matches') || 'null');
+  const stored = safeJSON('edgeform.matches', null);
   if (!Array.isArray(stored)) return DEFAULT_MATCHES;
   const defaultsById = Object.fromEntries(DEFAULT_MATCHES.map(match => [match.id, match]));
   return stored.map(match => ({ ...(defaultsById[match.id] || {}), ...match }));
@@ -9,7 +19,7 @@ function hydrateMatches() {
 
 const state = {
   matches: hydrateMatches(),
-  journal: JSON.parse(localStorage.getItem('edgeform.journal') || '[]')
+  journal: safeJSON('edgeform.journal', [])
 };
 
 const els = {
@@ -22,7 +32,8 @@ const els = {
   slips: document.querySelector('#slips'),
   strategies: document.querySelector('#strategies'),
   journalForm: document.querySelector('#journalForm'),
-  journalTable: document.querySelector('#journalTable')
+  journalTable: document.querySelector('#journalTable'),
+  sampleStatus: document.querySelector('#sampleStatus')
 };
 
 function money(n) { return `R${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`; }
@@ -162,10 +173,13 @@ function render() {
 }
 
 document.querySelector('#loadSample').addEventListener('click', () => {
-  state.matches = DEFAULT_MATCHES;
+  state.matches = DEFAULT_MATCHES.map(match => ({ ...match }));
   localStorage.setItem('edgeform.matches', JSON.stringify(state.matches));
+  els.evFilter.value = '0';
   setupFilters();
+  els.continentFilter.value = 'All';
   render();
+  els.sampleStatus.textContent = `Loaded ${state.matches.length} sample fixtures. Filters reset to All games and 0% EV.`;
 });
 
 document.querySelector('#exportJournal').addEventListener('click', () => {

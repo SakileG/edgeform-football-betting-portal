@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "node tests.js",
+    "test:ui": "playwright test tests-ui.spec.js --reporter=line",
     "check": "node --check betting-engine.js && node --check script.js && node --check server.js"
   },
   "keywords": [
@@ -15,5 +16,8 @@
     "expected-value",
     "dashboard"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.62.0"
+  }
 }
