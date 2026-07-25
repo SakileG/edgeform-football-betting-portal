@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EdgeForm Football Betting Research Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav>
+      <div class="brand"><span class="logo">EF</span><span>EdgeForm Portal</span></div>
+      <div class="pill">Research assistant • Not a guarantee system</div>
+    </nav>
+    <section class="hero-grid">
+      <div>
+        <p class="eyebrow">Football betting intelligence</p>
+        <h1>Find better bets by asking: “Are these odds wrong?”</h1>
+        <p class="lead">A prototype portal that scores match markets, flags danger spots, recommends strategies, and builds disciplined multi-bet slips from value candidates only.</p>
+        <div class="actions">
+          <button id="loadSample">Load sample watchlist</button>
+          <button id="exportJournal" class="secondary">Export betting journal</button>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <span class="stat-label">Rule #1</span>
+        <strong>Bet less, but bet better.</strong>
+        <p>If the model cannot explain the edge, the decision becomes <b>No bet</b> or <b>Wait for lineup</b>.</p>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <section class="control-panel">
+      <div>
+        <label>Bankroll</label>
+        <input id="bankroll" type="number" min="0" step="10" value="1000" />
+      </div>
+      <div>
+        <label>Filter continent</label>
+        <select id="continentFilter"><option value="All">All</option></select>
+      </div>
+      <div>
+        <label>Minimum EV%</label>
+        <input id="evFilter" type="range" min="-10" max="20" value="0" />
+        <small id="evLabel">0%</small>
+      </div>
+    </section>
+
+    <section class="summary-grid" id="summary"></section>
+
+    <section class="section-head">
+      <div>
+        <p class="eyebrow">Daily shortlist</p>
+        <h2>Bet / Wait / Avoid board</h2>
+      </div>
+      <p>Each card shows the best market, the strategy behind it, and the danger flags that can ruin a “safe” bet.</p>
+    </section>
+    <section id="matchGrid" class="match-grid"></section>
+
+    <section class="section-head">
+      <div>
+        <p class="eyebrow">Multi-bet builder</p>
+        <h2>Disciplined slips</h2>
+      </div>
+      <p>Serious slips are capped at 1–3 legs. Long accumulators are labelled entertainment only.</p>
+    </section>
+    <section id="slips" class="slip-grid"></section>
+
+    <section class="section-head">
+      <div>
+        <p class="eyebrow">Strategy library</p>
+        <h2>Markets and when to use them</h2>
+      </div>
+      <p>These are rules we researched and converted into the scoring engine: value betting, DNB, double chance, goal totals, BTTS, corners, cards, handicaps, and bankroll control.</p>
+    </section>
+    <section id="strategies" class="strategy-grid"></section>
+
+    <section class="journal">
+      <div class="section-head compact">
+        <div>
+          <p class="eyebrow">Learning loop</p>
+          <h2>Betting journal</h2>
+        </div>
+        <p>Track every bet so we can later see which leagues/markets actually work for you.</p>
+      </div>
+      <form id="journalForm" class="journal-form">
+        <input name="match" placeholder="Match" required />
+        <input name="market" placeholder="Market" required />
+        <input name="odds" type="number" step="0.01" placeholder="Odds" required />
+        <input name="stake" type="number" step="1" placeholder="Stake" required />
+        <select name="result"><option>Pending</option><option>Win</option><option>Loss</option><option>Void</option></select>
+        <input name="reason" placeholder="Reason / lesson" />
+        <button>Add</button>
+      </form>
+      <div id="journalTable"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>Responsible betting:</b> This portal is for research and discipline. It cannot guarantee profit. Use small fixed stakes, avoid chasing losses, and skip matches when the edge is unclear.</p>
+  </footer>
+
+  <script src="betting-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

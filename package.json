@@ -1,0 +1,19 @@
+{
+  "name": "edgeform-football-betting-portal",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Local-first football betting research portal for value, risk, market strategy and disciplined slips.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests.js",
+    "check": "node --check betting-engine.js && node --check script.js && node --check server.js"
+  },
+  "keywords": [
+    "football",
+    "soccer",
+    "betting-research",
+    "expected-value",
+    "dashboard"
+  ],
+  "license": "MIT"
+}
