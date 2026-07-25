@@ -23,6 +23,18 @@ node server.js
 
 Then open: http://127.0.0.1:8087
 
+## Deploy to Vercel
+
+Import the GitHub repo in Vercel:
+
+- Repository: `SakileG/edgeform-football-betting-portal`
+- Framework preset: `Other`
+- Build command: leave empty
+- Output directory: leave empty / project root
+- Install command: leave default or empty
+
+This is a static app, so Vercel can serve `index.html`, `styles.css`, and the JavaScript files directly.
+
 ## Research ideas included
 
 The prototype converts common betting concepts into product rules:
