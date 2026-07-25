@@ -97,32 +97,32 @@
 
   const DEFAULT_MATCHES = [
     {
-      id: 'arsenal-brighton', date: 'Today', team: 'Arsenal', opponent: 'Brighton', venue: 'Home', league: 'Premier League', continent: 'Europe',
+      id: 'arsenal-brighton', date: 'Sat 25 Jul 2026', time: '18:30', kickoffISO: '2026-07-25T18:30:00+02:00', team: 'Arsenal', opponent: 'Brighton', venue: 'Home', league: 'Premier League', continent: 'Europe',
       odds: { win: 1.62, drawNoBet: 1.28, doubleChance: 1.12, over15: 1.25, over25: 1.82, under35: 1.38, bttsYes: 1.76, cornersOver85: 1.80, cardsOver35: 1.95 },
       metrics: { form: 82, homeAway: 86, opponentWeakness: 61, attack: 78, defence: 70, motivation: 74, rest: 67, injuries: 18, rotation: 15, derby: 0, cup: 0, opponentAttack: 67, goalTrend: 74, cornerTrend: 75, cardHeat: 42 }
     },
     {
-      id: 'sundowns-city', date: 'Today', team: 'Mamelodi Sundowns', opponent: 'Cape Town City', venue: 'Home', league: 'South Africa PSL', continent: 'Africa',
+      id: 'sundowns-city', date: 'Sat 25 Jul 2026', time: '20:00', kickoffISO: '2026-07-25T20:00:00+02:00', team: 'Mamelodi Sundowns', opponent: 'Cape Town City', venue: 'Home', league: 'South Africa PSL', continent: 'Africa',
       odds: { win: 1.55, drawNoBet: 1.22, doubleChance: 1.10, over15: 1.32, over25: 2.05, under35: 1.34, bttsYes: 2.05, cornersOver85: 1.88, cardsOver35: 1.72 },
       metrics: { form: 88, homeAway: 90, opponentWeakness: 70, attack: 82, defence: 84, motivation: 78, rest: 72, injuries: 10, rotation: 20, derby: 0, cup: 0, opponentAttack: 51, goalTrend: 68, cornerTrend: 70, cardHeat: 54 }
     },
     {
-      id: 'madrid-derby', date: 'Tomorrow', team: 'Real Madrid', opponent: 'Atletico Madrid', venue: 'Away', league: 'La Liga', continent: 'Europe',
+      id: 'madrid-derby', date: 'Sun 26 Jul 2026', time: '21:00', kickoffISO: '2026-07-26T21:00:00+02:00', team: 'Real Madrid', opponent: 'Atletico Madrid', venue: 'Away', league: 'La Liga', continent: 'Europe',
       odds: { win: 2.25, drawNoBet: 1.60, doubleChance: 1.32, over15: 1.36, over25: 2.05, under35: 1.30, bttsYes: 1.78, cornersOver85: 1.83, cardsOver35: 1.45 },
       metrics: { form: 80, homeAway: 56, opponentWeakness: 39, attack: 79, defence: 76, motivation: 90, rest: 63, injuries: 16, rotation: 12, derby: 1, cup: 0, opponentAttack: 74, goalTrend: 58, cornerTrend: 66, cardHeat: 90 }
     },
     {
-      id: 'al-ahly-zamalek', date: 'Friday', team: 'Al Ahly', opponent: 'Zamalek', venue: 'Neutral', league: 'Egypt Premier League', continent: 'Africa',
+      id: 'al-ahly-zamalek', date: 'Fri 31 Jul 2026', time: '19:00', kickoffISO: '2026-07-31T19:00:00+02:00', team: 'Al Ahly', opponent: 'Zamalek', venue: 'Neutral', league: 'Egypt Premier League', continent: 'Africa',
       odds: { win: 2.05, drawNoBet: 1.45, doubleChance: 1.25, over15: 1.42, over25: 2.25, under35: 1.24, bttsYes: 1.92, cornersOver85: 1.86, cardsOver35: 1.38 },
       metrics: { form: 76, homeAway: 60, opponentWeakness: 42, attack: 71, defence: 77, motivation: 95, rest: 58, injuries: 22, rotation: 10, derby: 1, cup: 0, opponentAttack: 66, goalTrend: 52, cornerTrend: 59, cardHeat: 94 }
     },
     {
-      id: 'flamengo-palmeiras', date: 'Sunday', team: 'Flamengo', opponent: 'Palmeiras', venue: 'Home', league: 'Brasileirao', continent: 'South America',
+      id: 'flamengo-palmeiras', date: 'Sun 2 Aug 2026', time: '16:00', kickoffISO: '2026-08-02T16:00:00-03:00', team: 'Flamengo', opponent: 'Palmeiras', venue: 'Home', league: 'Brasileirao', continent: 'South America',
       odds: { win: 2.10, drawNoBet: 1.48, doubleChance: 1.24, over15: 1.34, over25: 2.00, under35: 1.31, bttsYes: 1.82, cornersOver85: 1.70, cardsOver35: 1.58 },
       metrics: { form: 73, homeAway: 75, opponentWeakness: 45, attack: 76, defence: 66, motivation: 82, rest: 64, injuries: 14, rotation: 18, derby: 0, cup: 0, opponentAttack: 72, goalTrend: 66, cornerTrend: 82, cardHeat: 72 }
     },
     {
-      id: 'alhilal-away', date: 'Today', team: 'Al Hilal', opponent: 'Al Taawoun', venue: 'Away', league: 'Saudi Pro League', continent: 'Asia',
+      id: 'alhilal-away', date: 'Sat 25 Jul 2026', time: '21:30', kickoffISO: '2026-07-25T21:30:00+03:00', team: 'Al Hilal', opponent: 'Al Taawoun', venue: 'Away', league: 'Saudi Pro League', continent: 'Asia',
       odds: { win: 1.72, drawNoBet: 1.30, doubleChance: 1.14, over15: 1.22, over25: 1.62, under35: 1.72, bttsYes: 1.70, cornersOver85: 1.78, cardsOver35: 1.84 },
       metrics: { form: 84, homeAway: 68, opponentWeakness: 64, attack: 88, defence: 70, motivation: 69, rest: 61, injuries: 12, rotation: 28, derby: 0, cup: 0, opponentAttack: 69, goalTrend: 82, cornerTrend: 76, cardHeat: 48 }
     }
@@ -139,6 +139,21 @@
       x.form * 0.14 + x.homeAway * 0.14 + x.opponentWeakness * 0.12 + x.attack * 0.12 + x.defence * 0.08 +
       x.motivation * 0.10 + x.rest * 0.07 + (100 - x.injuries) * 0.08 + (100 - x.rotation) * 0.07 + x.goalTrend * 0.08
     );
+  }
+
+
+  function formatKickoff(match) {
+    if (match.kickoffISO) {
+      try {
+        const date = new Date(match.kickoffISO);
+        const datePart = new Intl.DateTimeFormat('en-ZA', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' }).format(date);
+        const timePart = new Intl.DateTimeFormat('en-ZA', { hour: '2-digit', minute: '2-digit', hour12: false }).format(date);
+        return `${datePart} • ${timePart}`;
+      } catch (_) {
+        return `${match.date || 'TBC'}${match.time ? ` • ${match.time}` : ''}`;
+      }
+    }
+    return `${match.date || 'TBC'}${match.time ? ` • ${match.time}` : ''}`;
   }
 
   function riskFlags(match) {
@@ -219,7 +234,7 @@
     const best = markets[0];
     const valueCandidates = markets.filter(m => ['Strong candidate', 'Possible bet', 'Wait for lineup'].includes(m.decision));
     const overallDecision = valueCandidates.some(m => m.decision === 'Strong candidate') ? 'BET candidate' : valueCandidates.length ? 'Research / maybe' : 'No bet';
-    return { ...match, teamScore: +baseTeamScore(match).toFixed(1), flags, markets, best, valueCandidates, overallDecision };
+    return { ...match, kickoffLabel: formatKickoff(match), teamScore: +baseTeamScore(match).toFixed(1), flags, markets, best, valueCandidates, overallDecision };
   }
 
   function createMultiBets(evaluations) {
@@ -249,5 +264,5 @@
     return +(unit * multiplier).toFixed(2);
   }
 
-  return { STRATEGIES, DEFAULT_MATCHES, evaluateMatch, createMultiBets, impliedProbability, fairOdds, expectedValue, unitStake };
+  return { STRATEGIES, DEFAULT_MATCHES, evaluateMatch, createMultiBets, impliedProbability, fairOdds, expectedValue, unitStake, formatKickoff };
 });

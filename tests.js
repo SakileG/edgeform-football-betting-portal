@@ -12,6 +12,8 @@ for (const e of evaluations) {
   assert.ok(e.markets.length >= 8, 'each match should score all markets');
   assert.ok(e.best.score >= e.markets[e.markets.length - 1].score, 'markets should be sorted by score');
   assert.ok(['BET candidate', 'Research / maybe', 'No bet'].includes(e.overallDecision));
+  assert.ok(e.kickoffISO, 'each match should include a machine-readable kickoff date/time');
+  assert.ok(/\d{2}:\d{2}/.test(e.kickoffLabel), 'each match should render a visible kickoff time');
 }
 
 const derby = evaluations.find(e => e.id === 'madrid-derby');

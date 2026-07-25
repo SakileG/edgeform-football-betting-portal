@@ -1,7 +1,14 @@
 const { DEFAULT_MATCHES, STRATEGIES, evaluateMatch, createMultiBets, unitStake } = window.BettingEngine;
 
+function hydrateMatches() {
+  const stored = JSON.parse(localStorage.getItem('edgeform.matches') || 'null');
+  if (!Array.isArray(stored)) return DEFAULT_MATCHES;
+  const defaultsById = Object.fromEntries(DEFAULT_MATCHES.map(match => [match.id, match]));
+  return stored.map(match => ({ ...(defaultsById[match.id] || {}), ...match }));
+}
+
 const state = {
-  matches: JSON.parse(localStorage.getItem('edgeform.matches') || 'null') || DEFAULT_MATCHES,
+  matches: hydrateMatches(),
   journal: JSON.parse(localStorage.getItem('edgeform.journal') || '[]')
 };
 
@@ -20,6 +27,9 @@ const els = {
 
 function money(n) { return `R${Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}`; }
 function pct(n) { return `${Number(n).toFixed(1)}%`; }
+function fixtureMeta(e) {
+  return `${e.kickoffLabel || `${e.date || 'TBC'}${e.time ? ` • ${e.time}` : ''}`} • ${e.league}`;
+}
 
 function setupFilters() {
   const continents = ['All', ...new Set(state.matches.map(m => m.continent))];
@@ -61,19 +71,36 @@ function renderMatches(evals) {
         <td>${m.label}</td><td>${m.odds}</td><td>${pct(m.probability)}</td><td>${pct(m.implied)}</td><td class="${m.expectedValue > 0 ? 'pos' : 'neg'}">${pct(m.expectedValue)}</td><td><span class="decision mini">${m.decision}</span></td>
       </tr>`).join('');
     return `<article class="match-card ${e.overallDecision.toLowerCase().replaceAll(' ', '-')}">
+      <div class="fixture-strip">
+        <span>${fixtureMeta(e)}</span>
+        <b>${e.venue}</b>
+      </div>
       <div class="match-top">
-        <div><span class="date">${e.date} • ${e.league}</span><h3>${e.team} vs ${e.opponent}</h3><p>${e.venue} • ${e.continent}</p></div>
+        <div>
+          <p class="competition">${e.continent} • ${e.league}</p>
+          <h3><span>${e.team}</span><small>vs</small><span>${e.opponent}</span></h3>
+        </div>
         <span class="decision">${e.overallDecision}</span>
       </div>
       <div class="best-box">
-        <span>Best angle</span>
-        <strong>${best.label}</strong>
-        <p>${best.strategy} • Odds ${best.odds} • Fair ${best.fairOdds} • EV <b class="${best.expectedValue > 0 ? 'pos' : 'neg'}">${pct(best.expectedValue)}</b></p>
-        <p>Suggested stake: <b>${stake ? money(stake) : 'No stake'}</b></p>
+        <div>
+          <span>Recommended market</span>
+          <strong>${best.label}</strong>
+          <p>${best.strategy}</p>
+        </div>
+        <div class="odds-stack">
+          <b>${best.odds}</b>
+          <small>Odds</small>
+        </div>
+      </div>
+      <div class="metric-row">
+        <span>Fair <b>${best.fairOdds}</b></span>
+        <span>EV <b class="${best.expectedValue > 0 ? 'pos' : 'neg'}">${pct(best.expectedValue)}</b></span>
+        <span>Stake <b>${stake ? money(stake) : 'No stake'}</b></span>
       </div>
       <div class="flags">${flags}</div>
       <details>
-        <summary>View market scores</summary>
+        <summary>Market scores</summary>
         <table><thead><tr><th>Market</th><th>Odds</th><th>Our %</th><th>Book %</th><th>EV</th><th>Decision</th></tr></thead><tbody>${topMarkets}</tbody></table>
       </details>
     </article>`;
@@ -87,7 +114,7 @@ function renderSlips(evals) {
       <p>${s.note}</p>
       <strong>Combined odds: ${s.combinedOdds || '-'}</strong>
       <span>Average EV: ${pct(s.avgExpectedValue || 0)}</span>
-      <ol>${s.legs.length ? s.legs.map(l => `<li>${l.match.team} — ${l.market.label} @ ${l.market.odds} <em>(${pct(l.market.expectedValue)} EV)</em></li>`).join('') : '<li>No safe value legs under current filters.</li>'}</ol>
+      <ol>${s.legs.length ? s.legs.map(l => `<li><b>${l.match.kickoffLabel || l.match.date}</b> · ${l.match.team} — ${l.market.label} @ ${l.market.odds} <em>(${pct(l.market.expectedValue)} EV)</em></li>`).join('') : '<li>No safe value legs under current filters.</li>'}</ol>
     </article>`).join('');
 }
 
