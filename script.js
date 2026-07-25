@@ -30,6 +30,16 @@ function pct(n) { return `${Number(n).toFixed(1)}%`; }
 function fixtureMeta(e) {
   return `${e.kickoffLabel || `${e.date || 'TBC'}${e.time ? ` • ${e.time}` : ''}`} • ${e.league}`;
 }
+function fixtureQuery(e) { return encodeURIComponent(`${e.team} ${e.opponent}`); }
+function sourceLinks(e) {
+  const query = fixtureQuery(e);
+  return `
+    <div class="source-row">
+      <span class="source-badge">Sample data</span>
+      <a href="https://www.sofascore.com/search?q=${query}" target="_blank" rel="noreferrer">Check SofaScore</a>
+      <a href="https://www.flashscore.com/search/?q=${query}" target="_blank" rel="noreferrer">Check Flashscore</a>
+    </div>`;
+}
 
 function setupFilters() {
   const continents = ['All', ...new Set(state.matches.map(m => m.continent))];
@@ -82,6 +92,7 @@ function renderMatches(evals) {
         </div>
         <span class="decision">${e.overallDecision}</span>
       </div>
+      ${sourceLinks(e)}
       <div class="best-box">
         <div>
           <span>Recommended market</span>

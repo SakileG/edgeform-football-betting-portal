@@ -4,6 +4,8 @@ A local-first prototype for football/soccer betting research. It does **not** gu
 
 ## What it does
 
+> **Current data note:** the included fixtures are sample/demo data for testing the recommendation engine and UI. They are not live SofaScore/Flashscore fixtures yet. The app links each match to external SofaScore and Flashscore search pages for manual verification while we wire a proper data provider.
+
 - Scores each match across multiple markets: win, draw no bet, double chance, over/under goals, BTTS, corners, cards.
 - Calculates implied probability, fair odds, expected value and value gap.
 - Flags danger spots: derbies, rotation risk, injuries, congestion, away favourite caution.
